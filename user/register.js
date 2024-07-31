@@ -26,7 +26,7 @@ $(document).ready(function () {
           }
         } 
         if (phone != "") {
-          const phonePattern = /(01)[3-9][0-9]{8}$/;
+          const phonePattern = /(01)[3-9]{1}\d{8}/;
           isPhoneValid = phonePattern.test(phone);
           if(isPhoneValid == false){
             alert('invalid phone');
