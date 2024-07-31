@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="../bootstrap.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../jquery-3.7.1.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="add_product.js"></script>
+    <script>
+      $(document).ready(() => {
+        $("#navbar").load("../utilities/navbar.html", function () {
+          $.getScript("../utilities/logout.js");
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div id="navbar"></div>
+    <div class="text-center">
+      <form id="new-product-form">
+        <label for="">Product category</label>
+        <select id="category-select"></select>
+        <br />
+        <label for="">Product Title</label> <br />
+        <input type="text" id="product-title" /> <br />
+        <label for="">Product Description</label> <br />
+        <input type="text" id="product-Description" /> <br />
+        <input type="submit" value="Add" id="submitButton" />
+      </form>
+    </div>
+  </body>
+</html>

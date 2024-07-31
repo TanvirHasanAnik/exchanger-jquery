@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="../bootstrap.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../jquery-3.7.1.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="login.js"></script>
+  </head>
+  <body>
+    <div class="text-center">
+      <form id="form1">
+        <label for="">Username</label> <br />
+        <input type="text" id="username" /> <br />
+        <span id="username-error"></span> <br />
+        <label for="">Password</label> <br />
+        <input type="text" id="password" /> <br />
+        <span id="password-error"></span> <br />
+        <input type="submit" value="Login" id="submitButton" />
+      </form>
+      <span id="message"></span> <br />
+      <a href="register_page.html"
+        ><button id="register-button">go to register page</button></a
+      >
+    </div>
+  </body>
+</html>
