@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="stylesheet" href="../bootstrap.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
@@ -9,25 +10,27 @@
     <script src="register.js"></script>
   </head>
   <body>
-    <form id="form1">
-      <label for="">Username*</label> <br />
-      <input type="text" id="username" /> <br />
-      <span id="username-error"></span> <br />
-      <label for="">Password*</label> <br />
-      <input type="text" id="password" /> <br />
-      <span id="password-error"></span> <br />
-      <label for="">Address*</label> <br />
-      <input type="text" id="address" /> <br />
-      <span id="address-error"></span> <br />
-      <label for="">E-mail</label> <br />
-      <input type="text" id="email" /> <br />
-      <label for="">Phone number</label> <br />
-      <input type="text" id="phone" /> <br />
-      <input type="submit" value="Register" id="submitButton" />
-    </form>
-    <span id="message"></span> <br />
-    <a href="login_page.html"
-      ><button id="login-button">Go to login page</button></a
-    >
+    <div class="text-center">
+      <form id="form1">
+        <label for="">Username*</label> <br />
+        <input type="text" id="username" /> <br />
+        <span id="username-error"></span> <br />
+        <label for="">Password*</label> <br />
+        <input type="text" id="password" /> <br />
+        <span id="password-error"></span> <br />
+        <label for="">Address*</label> <br />
+        <input type="text" id="address" /> <br />
+        <span id="address-error"></span> <br />
+        <label for="">E-mail</label> <br />
+        <input type="text" id="email" /> <br />
+        <label for="">Phone number</label> <br />
+        <input type="text" id="phone" /> <br />
+        <input type="submit" value="Register" id="submitButton" />
+      </form>
+      <span id="message"></span> <br />
+      <a href="login_page.html"
+        ><button id="login-button">Go to login page</button></a
+      >
+    </div>
   </body>
 </html>
