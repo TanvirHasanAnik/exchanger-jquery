@@ -7,9 +7,9 @@ $(document).ready(function () {
       .then(function (user) {
         const userData = user.data;
         console.log(userData);
-        $("#username").append(userData.username);
-        $("#address").append(userData.address);
-        $("#email").append(userData.email);
-        $("#phone").append(userData.phone);
+        $("#username").append("Username: "+userData.username);
+        $("#address").append("address: "+userData.address);
+        $("#email").append("email: "+userData.email);
+        $("#phone").append("phone: "+userData.phone);
       });
   });
