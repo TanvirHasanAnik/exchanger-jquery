@@ -54,7 +54,7 @@ $(document).ready(() => {
     $("#expected-product-form").on("submit", function (event) {
       event.preventDefault();
       const categoryid = $("#expected-category-select").val();
-      const apiUrl = "http://localhost:3000/user-products/expected-product";
+      const apiUrl = "http://localhost:3000/user-products/add-expected-product";
       const data = {
         categoryid: categoryid,
       };
