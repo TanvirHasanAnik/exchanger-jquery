@@ -19,6 +19,7 @@
   <body>
     <div id="navbar"></div>
     <div class="text-center">
+      <h2>Add your new product</h2>
       <form id="new-product-form">
         <label for="">Product category</label>
         <select id="category-select"></select>
@@ -28,6 +29,16 @@
         <label for="">Product Description</label> <br />
         <input type="text" id="product-Description" /> <br />
         <input type="submit" value="Add" id="submitButton" />
+        <span id="message"></span> <br />
+      </form>
+      <hr />
+      <h2>product you are looking for</h2>
+      <form id="expected-product-form">
+        <label for="">Product category</label>
+        <select id="expected-category-select"></select>
+        <br />
+        <input type="submit" value="Add" id="submitButton" /><br />
+        <span id="exp-message"></span>
       </form>
     </div>
   </body>

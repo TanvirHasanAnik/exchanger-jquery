@@ -8,11 +8,20 @@ $(document).ready(() => {
         console.log(response.data);
         response.data.forEach((category) => {
           console.log(category.categoryname);
+          const categoryId = category.id;
+          const categoryName = category.categoryname;
           $("#category-select").append(
             "<option value = '" +
-              category.id +
+            categoryId +
               "'>" +
-              category.categoryname +
+              categoryName +
+              "</option>"
+          );
+          $("#expected-category-select").append(
+            "<option value = '" +
+            categoryId +
+              "'>" +
+              categoryName +
               "</option>"
           );
         });
@@ -32,11 +41,31 @@ $(document).ready(() => {
       axios.post(apiUrl, data, { withCredentials: true }).then(
         (response) => {
           if (response.status == 200) {
+            $("#message").text(response.data.message);
             alert(response.data.message);
           }
         },
         (error) => {
           console.log(error.response.data.message);
+        }
+      );
+    });
+
+    $("#expected-product-form").on("submit", function (event) {
+      event.preventDefault();
+      const categoryid = $("#expected-category-select").val();
+      const apiUrl = "http://localhost:3000/user-products/expected-product";
+      const data = {
+        categoryid: categoryid,
+      };
+      axios.post(apiUrl, data, { withCredentials: true }).then(
+        (response) => {
+            $("#exp-message").text(response.data.message);
+            alert(response.data.message);
+        },
+        (error) => {
+          console.log(error.response.data.message);
+          $("#exp-message").text(error.response.data.message);
         }
       );
     });
