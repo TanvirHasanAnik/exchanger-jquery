@@ -1,29 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="../bootstrap.css" />
+    <link rel="stylesheet" href="../assets/dist/css/bootstrap.min.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../jquery-3.7.1.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="login.js"></script>
   </head>
-  <body>
-    <div class="text-center">
-      <form id="form1">
-        <label for="">Username</label> <br />
-        <input type="text" id="username" /> <br />
-        <span id="username-error"></span> <br />
-        <label for="">Password</label> <br />
-        <input type="text" id="password" /> <br />
-        <span id="password-error"></span> <br />
-        <input type="submit" value="Login" id="submitButton" />
-      </form>
-      <span id="message"></span> <br />
-      <a href="register_page.html"
-        ><button id="register-button">go to register page</button></a
-      >
+  <body
+    class="d-flex align-items-center"
+    style="height: 100vh; background-color: #f8f9fa"
+  >
+    <div class="container">
+      <div class="row justify-content-center">
+        <div
+          class="col-md-6 col-lg-4 p-4 rounded border shadow"
+          style="background-color: white"
+        >
+          <form id="form1">
+            <div class="row justify-content-center">
+              <div class="col-md-12 col-lg-8">
+                <img src="../exchanger_logo_vertical.svg" alt="" />
+              </div>
+            </div>
+            <span id="username-error" class="text-danger"></span>
+            <br />
+            <input
+              type="text"
+              class="form-control"
+              id="username"
+              placeholder="Username"
+            />
+            <br />
+            <span id="password-error" class="text-danger"></span>
+            <br />
+            <input
+              type="text"
+              class="form-control"
+              id="password"
+              placeholder="Password"
+            />
+            <br />
+            <input
+              type="submit"
+              class="btn btn-primary w-100 mt-1"
+              value="Login"
+              id="submitButton"
+            />
+          </form>
+          <span id="message" class="text-danger"></span> <br />
+          <a href="register_page.html"
+            ><button type="button" class="btn w-100" id="register-button">
+              Register Page
+            </button></a
+          >
+        </div>
+      </div>
     </div>
   </body>
 </html>
