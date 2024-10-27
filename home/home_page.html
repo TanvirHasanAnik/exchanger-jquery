@@ -1,21 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="../bootstrap.css" />
+    <link rel="stylesheet" href="../assets/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../styles.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../jquery-3.7.1.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script>
-      $(document).ready(() => {
-        $("#navbar").load("../utilities/navbar.html", function () {
-          $.getScript("../utilities/logout.js");
-        });
-      });
-    </script>
   </head>
-  <body>
+  <body style="background-color: #f8f9fa">
     <div id="navbar"></div>
+    <div
+      style="width: 80%; margin: auto; padding: 20px; box-sizing: border-box"
+    >
+      <div class="d-flex justify-content-center">
+        <button type="button" class="btn btn-dark btn-lg">Match Users</button>
+      </div>
+      <div id="filter-by" class="m-4">
+        <div class="dropdown">
+          <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Filter by
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Time added</a></li>
+            <li><a class="dropdown-item" href="#">Expected products</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="grid-container" id="gridContainer"></div>
+    </div>
   </body>
+  <script>
+    $(document).ready(() => {
+      $("#navbar").load("../utilities/navbar.html", function () {
+        $.getScript("../utilities/logout.js");
+      });
+    });
+    // script.js
+    $(document).ready(function () {
+      // Number of grid items you want to add dynamically
+      const numberOfItems = 3;
+
+      // Function to create and append grid items
+      function populateGrid() {
+        const gridContainer = $("#gridContainer");
+        axios
+          .get("http://localhost:3000/user-products/products-list", {
+            withCredentials: true,
+          })
+          .then(function (response) {
+            console.log(response.data);
+            response.data.forEach((product) => {
+              const gridItem =
+                $(`<div class="card mb-3" style="max-width: 540px;">
+                  <div class="row g-0">
+                    <div class="col-md-4">
+                      <img src="../image-placeholder.svg" class="img-fluid rounded-start" alt="../image-placeholder.svg">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title">${product.productTitle}</h5>
+                        <p class="card-text">${product.productDescription}</p>
+                        <p class="card-text"><small style="color:orange">${product.categoryname}</small></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>`);
+              gridContainer.append(gridItem);
+            });
+          });
+      }
+
+      // Populate the grid when the page loads
+      populateGrid();
+    });
+  </script>
 </html>
