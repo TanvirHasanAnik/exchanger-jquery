@@ -18,23 +18,27 @@
       <div class="d-flex justify-content-center">
         <button type="button" class="btn btn-dark btn-lg">Match Users</button>
       </div>
-      <div id="filter-by" class="m-4">
-        <div class="dropdown">
-          <button
-            class="btn btn-secondary dropdown-toggle"
-            type="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
+      <div id="filter-by" class="mb-4 mt-4">
+        <select
+          class="form-select"
+          id="productDropdown"
+          aria-label="Default select example"
+        >
+          <option value="http://localhost:3000/user-products/all-products-list">
+            All products
+          </option>
+          <option
+            value="http://localhost:3000/user-products/expected-products-list"
           >
-            Filter by
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Time added</a></li>
-            <li><a class="dropdown-item" href="#">Expected products</a></li>
-          </ul>
-        </div>
+            Expected products
+          </option>
+        </select>
       </div>
-      <div class="grid-container" id="gridContainer"></div>
+      <div
+        class="grid-container rounded border"
+        style="background-color: #ffffff"
+        id="gridContainer"
+      ></div>
     </div>
   </body>
   <script>
@@ -43,43 +47,51 @@
         $.getScript("../utilities/logout.js");
       });
     });
-    // script.js
-    $(document).ready(function () {
-      // Number of grid items you want to add dynamically
-      const numberOfItems = 3;
 
-      // Function to create and append grid items
-      function populateGrid() {
-        const gridContainer = $("#gridContainer");
+    $(document).ready(() => {
+      const gridContainer = $("#gridContainer");
+      function loadProducts(apiUrl) {
+        gridContainer.empty();
+
         axios
-          .get("http://localhost:3000/user-products/products-list", {
+          .get(apiUrl, {
             withCredentials: true,
           })
           .then(function (response) {
             console.log(response.data);
             response.data.forEach((product) => {
               const gridItem =
-                $(`<div class="card mb-3" style="max-width: 540px;">
-                  <div class="row g-0">
-                    <div class="col-md-4">
-                      <img src="../image-placeholder.svg" class="img-fluid rounded-start" alt="../image-placeholder.svg">
-                    </div>
-                    <div class="col-md-8">
-                      <div class="card-body">
-                        <h5 class="card-title">${product.productTitle}</h5>
-                        <p class="card-text">${product.productDescription}</p>
-                        <p class="card-text"><small style="color:orange">${product.categoryname}</small></p>
-                      </div>
+                $(`<div class="card mb-3 shadow" style="max-width: 540px;">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img src="../product-logo.webp" class="img-fluid rounded-start" alt="../image-placeholder.svg">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">${product.productTitle}</h5>
+                      <p class="card-text">${product.productDescription}</p>
+                      <p class="card-text"><small style="color:green">${product.categoryname}</small></p>
                     </div>
                   </div>
-                </div>`);
+                </div>
+              </div>`);
               gridContainer.append(gridItem);
             });
           });
       }
 
-      // Populate the grid when the page loads
-      populateGrid();
+      // Call the function to load all products by default
+      const defaultApiUrl =
+        "http://localhost:3000/user-products/all-products-list";
+      loadProducts(defaultApiUrl);
+
+      // Function to create and append grid items
+      $("#productDropdown").change(function () {
+        var selectedApiUrl = $(this).val(); // Get the selected option's value
+        if (selectedApiUrl) {
+          loadProducts(selectedApiUrl); // Call the loadProducts function with the selected URL
+        }
+      });
     });
   </script>
 </html>
