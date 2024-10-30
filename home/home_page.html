@@ -15,9 +15,14 @@
     <div
       style="width: 80%; margin: auto; padding: 20px; box-sizing: border-box"
     >
-      <div class="d-flex justify-content-center">
+      <div class="d-flex justify-content-center mb-4">
         <button type="button" class="btn btn-dark btn-lg">Match Users</button>
       </div>
+      <div
+        class="grid-container-users rounded border"
+        style="background-color: #ffffff"
+        id="gridContainerUsers"
+      ></div>
       <div id="filter-by" class="mb-4 mt-4">
         <select
           class="form-select"
@@ -35,9 +40,9 @@
         </select>
       </div>
       <div
-        class="grid-container rounded border"
+        class="grid-container-products rounded border"
         style="background-color: #ffffff"
-        id="gridContainer"
+        id="gridContainerProducts"
       ></div>
     </div>
   </body>
@@ -49,10 +54,33 @@
     });
 
     $(document).ready(() => {
-      const gridContainer = $("#gridContainer");
-      function loadProducts(apiUrl) {
-        gridContainer.empty();
+      const gridContainerProducts = $("#gridContainerProducts");
+      const gridContainerUsers = $("#gridContainerUsers");
 
+      function loadUsers(apiUrl) {
+        gridContainerUsers.empty();
+        axios
+          .get(apiUrl, {
+            withCredentials: true,
+          })
+          .then(function (response) {
+            console.log(response.data);
+            response.data.forEach((user) => {
+              const gridItem = $(`<div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="../user-image.svg" alt="../image-placeholder.svg">
+                    <div class="card-body">
+                      <h5 class="card-title">${user.username}</h5>
+                      <p class="card-text">${user.address}</p>
+                      <a href="#" class="btn btn-primary">Profile</a>
+                    </div>
+                  </div>`);
+              gridContainerUsers.append(gridItem);
+            });
+          });
+      }
+
+      function loadProducts(apiUrl) {
+        gridContainerProducts.empty();
         axios
           .get(apiUrl, {
             withCredentials: true,
@@ -75,14 +103,18 @@
                   </div>
                 </div>
               </div>`);
-              gridContainer.append(gridItem);
+              gridContainerProducts.append(gridItem);
             });
           });
       }
 
+      const users = "http://localhost:3000/user-products/match-user";
+      loadUsers(users);
+
       // Call the function to load all products by default
       const defaultApiUrl =
         "http://localhost:3000/user-products/all-products-list";
+
       loadProducts(defaultApiUrl);
 
       // Function to create and append grid items
