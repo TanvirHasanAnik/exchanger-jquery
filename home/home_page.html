@@ -16,7 +16,9 @@
       style="width: 80%; margin: auto; padding: 20px; box-sizing: border-box"
     >
       <div class="d-flex justify-content-center mb-4">
-        <button type="button" class="btn btn-dark btn-lg">Match Users</button>
+        <button type="button" class="btn btn-dark btn-lg" id="matchUser">
+          Match Users
+        </button>
       </div>
       <div
         class="grid-container-users rounded border"
@@ -54,6 +56,7 @@
     });
 
     $(document).ready(() => {
+      $("#gridContainerUsers").hide();
       const gridContainerProducts = $("#gridContainerProducts");
       const gridContainerUsers = $("#gridContainerUsers");
 
@@ -107,10 +110,11 @@
             });
           });
       }
-
-      const users = "http://localhost:3000/user-products/match-user";
-      loadUsers(users);
-
+      $("#matchUser").click(function () {
+        $("#gridContainerUsers").show();
+        const users = "http://localhost:3000/user-products/match-user";
+        loadUsers(users);
+      });
       // Call the function to load all products by default
       const defaultApiUrl =
         "http://localhost:3000/user-products/all-products-list";
