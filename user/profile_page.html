@@ -3,6 +3,7 @@
   <head>
     <link rel="stylesheet" href="../assets/dist/css/bootstrap-icons.css" />
     <link rel="stylesheet" href="../assets/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../styles.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
@@ -18,25 +19,13 @@
       });
     </script>
   </head>
-  <body
-    style="
-      background-color: #f8f9fa;
-      background-image: url('../background.jpg');
-    "
-  >
+  <body>
     <div id="navbar"></div>
 
     <div
       style="width: 80%; margin: auto; padding: 20px; box-sizing: border-box"
     >
-      <div
-        class="userDetails rounded border"
-        style="
-          background-color: rgba(255, 255, 255, 0.9);
-          backdrop-filter: blur(10px);
-          width: 100%;
-        "
-      >
+      <div class="userDetails blurred-bg rounded border" style="width: 100%">
         <div class="row g-0 m-5" style="width: 80%">
           <div class="col-md-3">
             <img
@@ -89,23 +78,11 @@
       </div>
 
       <div class="row g-0 mt-5">
-        <div
-          class="col-md-6 rounded border"
-          style="
-            background-color: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-          "
-        >
+        <div class="col-md-6 blurred-bg rounded border">
           <h1 style="font-weight: normal; text-align: center">Products</h1>
         </div>
         <div class="col-md-1"></div>
-        <div
-          class="col-md-5 rounded border"
-          style="
-            background-color: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-          "
-        >
+        <div class="col-md-5 blurred-bg rounded border">
           <h1 style="font-weight: normal; text-align: center">Reviews</h1>
         </div>
       </div>

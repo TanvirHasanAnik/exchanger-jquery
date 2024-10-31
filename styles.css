@@ -12,6 +12,17 @@
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
 }
 
+.blurred-bg {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+body {
+  background-color: #f8f9fa;
+  background-image: url("background5.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 /* .grid-item {
   background-color: #4caf50;
   color: white;
