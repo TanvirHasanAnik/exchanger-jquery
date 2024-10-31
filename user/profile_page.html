@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="stylesheet" href="../assets/dist/css/bootstrap-icons.css">
     <link rel="stylesheet" href="../assets/dist/css/bootstrap.min.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="../jquery-3.7.1.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
     <script src="profile.js"></script>
     <script>
       $(document).ready(() => {
@@ -16,16 +18,55 @@
       });
     </script>
   </head>
-  <body>
+  <body
+    style="
+      background-color: #f8f9fa;
+      background-image: url('../background.jpg');
+    "
+  >
     <div id="navbar"></div>
-    <h1>My Profile</h1>
-    <h2 id="username"></h2>
-    <br />
-    <h2 id="address"></h2>
-    <br />
-    <h2 id="email"></h2>
-    <br />
-    <h2 id="phone"></h2>
-    <br />
+
+    <div
+      style="width: 80%; margin: auto; padding: 20px; box-sizing: border-box"
+    >
+      <div
+        class="userDetails rounded border"
+        style="
+          background-color: rgba(255, 255, 255, 0.9);
+          backdrop-filter: blur(10px);
+          width: 100%;
+        "
+      >
+        <div class="row g-0 m-5" style="width: 80%">
+          <div class="col-md-3">
+            <img
+              src="../user-image.PNG"
+              class="img-fluid rounded"
+              alt="../image-placeholder.svg"
+            />
+          </div>
+          <div class="col-md-5">
+            <div class="ms-4">
+              <h4 class="mb-4" id="username"></h4>
+              <h5 class="mb-2" id="address" style="font-weight: normal;"><i class="bi bi-house-fill"></i></h5>
+              <h5 class="mb-2" id="email" style="font-weight: normal;"><i class="bi bi-envelope-fill"></i></h5>
+              <h5 class="mb-2" id="phone" style="font-weight: normal;"><i class="bi bi-telephone-fill"></i></h5>
+              <button type="button" class="btn btn-warning"><i class="bi bi-chat-dots-fill"></i> Chat</button>
+            </div>
+        </div>
+        <div class="col-md-4">
+          <div class="ms-4">
+            <div class="row mb-4">
+              <h5 class="col" style="color: #005403;">Reviews <i class="bi bi-hand-thumbs-up-fill"></i> 1</h5>
+              <h5 class="col" style="color: #6b020d;">Reviews <i class="bi bi-hand-thumbs-down-fill"></i> 3</h5>
+            </div>
+            <h5 class="text">Positive Review Percentage: 25%</h5>
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+      </div>
+      </div>
+    </div>
   </body>
 </html>

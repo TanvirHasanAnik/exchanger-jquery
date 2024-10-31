@@ -1,6 +1,5 @@
 
 $(document).ready(function () {
-
     function getQueryParam(param){
       var urlParam = new URLSearchParams(window.location.search);
       return urlParam.get(param);
@@ -16,10 +15,10 @@ $(document).ready(function () {
           const userData = user.data;
           console.log(userId);
           console.log(userData);
-          $("#username").append("Username: "+userData.username);
-          $("#address").append("address: "+userData.address);
-          $("#email").append("email: "+userData.email);
-          $("#phone").append("phone: "+userData.phone);
+          $("#username").append("  "+userData.username);
+          $("#address").append("  "+userData.address);
+          $("#email").append("  "+userData.email);
+          $("#phone").append("  "+userData.phone);
         });
     }
   });

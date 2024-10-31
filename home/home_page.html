@@ -33,7 +33,7 @@
         "
         id="gridContainerUsers"
       ></div>
-      <div id="filter-by" class="mb-4 mt-4">
+      <div style="width: 20%" id="filter-by" class="mb-4 mt-4">
         <select
           class="form-select"
           id="productDropdown"
@@ -67,7 +67,6 @@
       $("#gridContainerUsers").on("click", ".card", function () {
         var userId = $(this).data("userid");
         if (userId) {
-          alert(userId);
           window.location.href = "../user/profile_page.html?userId=" + userId;
         }
       });
