@@ -84,7 +84,7 @@
             response.data.forEach((user) => {
               const gridItem =
                 $(`<div class="card shadow" data-userid = "${user.id}" style="width: 12rem;">
-                    <img class="card-img-top" src="../user-image.svg" alt="../image-placeholder.svg">
+                    <img class="card-img-top" src="../user-image3.jpg" alt="../image-placeholder.svg">
                     <div class="card-body">
                       <h5 class="card-title">${user.username}</h5>
                       <p class="card-text">${user.address}</p>
@@ -108,10 +108,10 @@
             console.log(response.data);
             response.data.forEach((product) => {
               const gridItem =
-                $(`<div class="card mb-3 shadow" style="max-width: 540px;">
-                <div class="row g-0">
+                $(`<div class="card" style="display: flex;flex-direction: row;overflow: hidden;">
+                <div class="row g-0 ">
                   <div class="col-md-4">
-                    <img src="../product-logo.webp" class="img-fluid rounded-start" alt="../image-placeholder.svg">
+                    <img style="height: 100%; object-fit: cover;" src="../product-image.png" class="img-fluid rounded-start" alt="../image-placeholder.svg">
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">

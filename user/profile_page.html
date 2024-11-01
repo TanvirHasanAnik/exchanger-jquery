@@ -27,14 +27,14 @@
     >
       <div class="userDetails blurred-bg rounded border" style="width: 100%">
         <div class="row g-0 m-5" style="width: 80%">
-          <div class="col-md-3">
+          <div class="col-md-2">
             <img
-              src="../user-image.PNG"
+              src="../user-image3.jpg"
               class="img-fluid rounded"
               alt="../image-placeholder.svg"
             />
           </div>
-          <div class="col-md-5">
+          <div class="col-md-6">
             <div class="ms-4">
               <h4 class="mb-4" id="username"></h4>
               <h5 class="mb-2" id="address" style="font-weight: normal">
@@ -46,9 +46,6 @@
               <h5 class="mb-2" id="phone" style="font-weight: normal">
                 <i class="bi bi-telephone-fill"></i>
               </h5>
-              <button type="button" class="btn btn-warning">
-                <i class="bi bi-chat-dots-fill"></i> Chat
-              </button>
             </div>
           </div>
           <div class="col-md-4">
@@ -75,15 +72,38 @@
             </div>
           </div>
         </div>
+        <div class="ms-5 mb-2">
+          <button type="button" class="btn btn-warning">
+            <i class="bi bi-chat-dots-fill"></i> Chat
+          </button>
+        </div>
       </div>
 
       <div class="row g-0 mt-5">
-        <div class="col-md-6 blurred-bg rounded border">
-          <h1 style="font-weight: normal; text-align: center">Products</h1>
+        <div class="col-md-6">
+          <div class="blurred-bg rounded border me-2">
+            <p class="m-4" style="font-weight: normal; text-align: center">
+              Products
+            </p>
+            <br />
+            <ul
+              class="list-unstyled d-flex flex-column align-items-center"
+              id="product-list"
+              style="
+                list-style-type: none;
+                padding: 0;
+                margin: auto;
+                width: 90%;
+              "
+            ></ul>
+          </div>
         </div>
-        <div class="col-md-1"></div>
-        <div class="col-md-5 blurred-bg rounded border">
-          <h1 style="font-weight: normal; text-align: center">Reviews</h1>
+        <div class="col-md-6">
+          <div class="blurred-bg rounded border ms-2">
+            <p class="m-4" style="font-weight: normal; text-align: center">
+              Reviews
+            </p>
+          </div>
         </div>
       </div>
     </div>
