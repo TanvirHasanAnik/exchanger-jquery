@@ -21,6 +21,7 @@ $(document).ready(function () {
           $("#phone").append("  "+userData.phone);
         });
         
+        //product list
         axios
           .get(`http://localhost:3000/user-products/products-list?userid=${userId}`, {
             withCredentials: true,
@@ -48,6 +49,37 @@ $(document).ready(function () {
               </div>
             </li>`);
             $("#product-list").append(item);
+            });
+          });
+          
+          //review list
+          axios
+          .get(`http://localhost:3000/review/get-review?userid=${userId}`, {
+            withCredentials: true,
+          })
+          .then(function (response) {
+            const reviews = response.data;
+            console.log(reviews);
+            reviews.forEach((review) => {
+              const item =
+                $(`
+            <li class = "mb-1" style = "width:100%">
+              <div class="container">
+                <div class="card p-3">
+                  <!-- User Information Row -->
+                  <div class="d-flex align-items-center mb-2">
+                    <!-- User Profile Picture -->
+                    <img src="../user-image3.jpg" class="rounded-circle me-2" alt="User Profile" style="width: 40px; height: 40px;">
+                    <!-- Username -->
+                    <h5 class="mb-0">${review.username}</h5>
+                  </div>
+                  <!-- Review Content -->
+                  <p class="card-text">${review.content}</p>
+                  <p class="card-text"><small class="text-muted">Posted on: January 1, 2024</small></p>
+                </div>
+              </div>
+            </li>`);
+            $("#review-list").append(item);
             });
           });
     }
