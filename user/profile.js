@@ -7,21 +7,53 @@ $(document).ready(function () {
 
     var userId = getQueryParam("userId");
     if(userId) {
-      axios
-        .get(`http://localhost:3000/user/get-profile?userid=${userId}`, {
-          withCredentials: true,
-        })
-        .then(function (response) {
-          const userData = response.data;
-          console.log(userId);
-          console.log(userData);
-          $("#username").append("  "+userData.username);
-          $("#address").append("  "+userData.address);
-          $("#email").append("  "+userData.email);
-          $("#phone").append("  "+userData.phone);
-        });
+
+      //user info
+      function loadUserInfo(){
+        axios
+          .get(`http://localhost:3000/user/get-profile?userid=${userId}`, {
+            withCredentials: true,
+          })
+          .then(function (response) {
+            const userData = response.data;
+            console.log(userId);
+            console.log(userData);
+            $("#username").append("  "+userData.username);
+            $("#address").append("  "+userData.address);
+            $("#email").append("  "+userData.email);
+            $("#phone").append("  "+userData.phone);
+          });
+      }
+
+        //Review counts
+        function reviewCounts(){
+          $("#positive-count").html('');
+          $("#negative-count").html('');
+          $("#positive-percentage").html('');
+          axios
+            .get(`http://localhost:3000/review/get-review-count?userid=${userId}`, {
+              withCredentials: true,
+            })
+            .then(function (response) {
+              const counts = response.data;
+              
+              const positiveCount = counts.positive != null ? counts.positive : 0;
+              const negativeCount = counts.negative != null ? counts.negative : 0;
+              const positivePercentage = counts.total > 0 ? (positiveCount / counts.total) * 100 : 0;
+              
+              console.log(counts);
+  
+              $("#positive-count").append(`+ Reviews <i class="bi bi-hand-thumbs-up-fill"></i> `+positiveCount);
+              $("#negative-count").append(`- Reviews <i class="bi bi-hand-thumbs-down-fill"></i> `+negativeCount);
+              $("#positive-percentage").append("Positive Review Percentage: "+positivePercentage.toFixed(2));
+  
+              const progressBar = document.getElementById('percentage-bar');
+              progressBar.style.width = positivePercentage + '%';
+              progressBar.setAttribute('aria-valuenow', positivePercentage);
+            });
+        }
         
-        //product list
+        //user product list
 
         function loadProducts(){
           axios
@@ -55,41 +87,42 @@ $(document).ready(function () {
             });
         }
           
-          //review list
-          function loadReviews(){
-            $("#review-list").html('');
+        //user profile review list
+        function loadReviews(){
+          $("#review-list").html('');
 
-            axios
-            .get(`http://localhost:3000/review/get-review?userid=${userId}`, {
-              withCredentials: true,
-            })
-            .then(function (response) {
-              const reviews = response.data;
-              console.log(reviews);
-              reviews.forEach((review) => {
-                const item =
-                  $(`
-              <li class = "mb-1" style = "width:100%">
-                <div class="container">
-                  <div class="card p-3">
-                    <!-- User Information Row -->
-                    <div class="d-flex align-items-center mb-2">
-                      <!-- User Profile Picture -->
-                      <img src="../user-image3.jpg" class="rounded-circle me-2" alt="User Profile" style="width: 40px; height: 40px;">
-                      <!-- Username -->
-                      <h5 class="mb-0">${review.username}</h5>
-                    </div>
-                    <!-- Review Content -->
-                    <p class="card-text">${review.content}</p>
-                    <p class="card-text"><small class="text-muted">Posted on: January 1, 2024</small></p>
+          axios
+          .get(`http://localhost:3000/review/get-review?userid=${userId}`, {
+            withCredentials: true,
+          })
+          .then(function (response) {
+            const reviews = response.data;
+            console.log(reviews);
+            reviews.forEach((review) => {
+              const item =
+                $(`
+            <li class = "mb-1" style = "width:100%">
+              <div class="container">
+                <div class="card p-3">
+                  <!-- User Information Row -->
+                  <div class="d-flex align-items-center mb-2">
+                    <!-- User Profile Picture -->
+                    <img src="../user-image3.jpg" class="rounded-circle me-2" alt="User Profile" style="width: 40px; height: 40px;">
+                    <!-- Username -->
+                    <h5 class="mb-0">${review.username}</h5>
                   </div>
+                  <!-- Review Content -->
+                  <p class="card-text">${review.content}</p>
+                  <p class="card-text"><small class="text-muted">Posted on: January 1, 2024</small></p>
                 </div>
-              </li>`);
-              $("#review-list").append(item);
-              });
+              </div>
+            </li>`);
+            $("#review-list").append(item);
             });
-          }
-          
+          });
+        }
+          loadUserInfo();
+          reviewCounts();
           loadProducts();
           loadReviews();
 
@@ -105,6 +138,7 @@ $(document).ready(function () {
             axios.post(apiUrl, data, { withCredentials: true }).then(
               (response) => {
                 alert(response.data.message);
+                reviewCounts();
                 loadReviews();
               },
               (error) => {
