@@ -82,5 +82,24 @@ $(document).ready(function () {
             $("#review-list").append(item);
             });
           });
+
+          //adding/posting review
+
+          $("#review-form").on("submit", function (event) {
+            event.preventDefault();
+            const apiUrl = "http://localhost:3000/review/add-review";
+            const data = {
+              userid: userId,
+              content: $("#reviewText").val()
+            };
+            axios.post(apiUrl, data, { withCredentials: true }).then(
+              (response) => {
+                alert(response.data.message);
+              },
+              (error) => {
+                alert(error.response ? error.response.data.message : "An error occurred");
+              }
+            );
+          });
     }
   });
