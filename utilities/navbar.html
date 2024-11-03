@@ -25,7 +25,11 @@
     </ul>
     <ul class="navbar-nav ms-auto m-3">
       <li class="nav-item">
-        <a class="nav-link" href="../user/profile_page.html">Profile</a>
+        <i
+          class="bi bi-person-circle mt-2 me-4 fs-2"
+          style="cursor: pointer"
+          id="profile"
+        ></i>
       </li>
       <button id="logout" class="btn btn-sm btn-outline-dark" type="button">
         Logout
@@ -33,3 +37,8 @@
     </ul>
   </nav>
 </div>
+<script>
+  $("#profile").on("click", function () {
+    window.location.href = "../user/profile_page.html";
+  });
+</script>
