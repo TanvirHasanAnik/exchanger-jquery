@@ -19,28 +19,144 @@
   </head>
   <body>
     <div id="navbar"></div>
-    <div class="text-center">
-      <h2>Add your new product</h2>
-      <form id="new-product-form">
-        <label for="">Product category</label>
-        <select id="category-select"></select>
-        <br />
-        <label for="">Product Title</label> <br />
-        <input type="text" id="product-title" /> <br />
-        <label for="">Product Description</label> <br />
-        <input type="text" id="product-Description" /> <br />
-        <input type="submit" value="Add" id="submitButton" />
-        <span id="message"></span> <br />
-      </form>
-      <hr />
-      <h2>product you are looking for</h2>
-      <form id="expected-product-form">
-        <label for="">Product category</label>
-        <select id="expected-category-select"></select>
-        <br />
-        <input type="submit" value="Add" id="submitButton" /><br />
-        <span id="exp-message"></span>
-      </form>
+    <div
+      style="width: 80%; margin: auto; padding: 20px; box-sizing: border-box"
+    >
+      <div class="row g-0 mt-5">
+        <div class="col-md-6">
+          <div class="blurred-bg rounded border me-2">
+            <p class="mt-4" style="font-weight: normal; text-align: center">
+              My Products
+            </p>
+            <br />
+
+            <div class="d-flex flex-column align-items-center">
+              <div
+                class="card shadow p-4 m-4"
+                style="max-width: 500px; width: 100%"
+              >
+                <h2 class="text-center mb-4">Add Your New Product</h2>
+                <form id="new-product-form">
+                  <div class="form-group mb-3">
+                    <label for="category-select">Product Category</label>
+                    <select class="form-control" id="category-select">
+                      <option value="">Select a category</option>
+                      <!-- Add more options here -->
+                    </select>
+                  </div>
+
+                  <div class="form-group mb-3">
+                    <label for="product-title">Product Title</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="product-title"
+                      placeholder="Enter product title"
+                    />
+                  </div>
+
+                  <div class="form-group mb-3">
+                    <label for="product-description">Product Description</label>
+                    <textarea
+                      class="form-control"
+                      id="product-description"
+                      rows="3"
+                      placeholder="Enter product description"
+                    ></textarea>
+                  </div>
+
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-block"
+                    id="submitButton"
+                  >
+                    Add
+                  </button>
+                  <span id="message" class="text-success mt-3 d-block"></span>
+                </form>
+              </div>
+              <!--
+              <h2>Add your new product</h2>
+              <form id="new-product-form">
+                <label for="">Product category</label>
+                <select id="category-select"></select>
+                <br />
+                <label for="">Product Title</label> <br />
+                <input type="text" id="product-title" /> <br />
+                <label for="">Product Description</label> <br />
+                <input type="text" id="product-Description" /> <br />
+                <input type="submit" value="Add" id="submitButton" />
+                <span id="message"></span> <br />
+              </form>
+              -->
+            </div>
+            <ul
+              class="list-unstyled d-flex flex-column align-items-center mb-3"
+              id="product-list"
+              style="
+                list-style-type: none;
+                padding: 0;
+                margin: auto;
+                width: 90%;
+              "
+            ></ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="blurred-bg rounded border ms-2">
+            <p class="mt-4" style="font-weight: normal; text-align: center">
+              My expected Products
+            </p>
+            <br />
+            <div
+              class="d-flex flex-column align-items-center"
+              style="margin: auto; width: 100%"
+            >
+              <div
+                class="card shadow p-4 m-4"
+                style="max-width: 400px; width: 100%"
+              >
+                <h2 class="text-center mb-4">Product You Are Looking For</h2>
+                <form id="expected-product-form">
+                  <div class="form-group">
+                    <label for="expected-category-select"
+                      >Product Category</label
+                    >
+                    <select
+                      class="form-control mb-3"
+                      id="expected-category-select"
+                    >
+                      <option value="">Select a category</option>
+                      <!-- Add more options here -->
+                    </select>
+                  </div>
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-block"
+                    id="submitButton"
+                  >
+                    Add
+                  </button>
+                  <span
+                    id="exp-message"
+                    class="text-success mt-3 d-block"
+                  ></span>
+                </form>
+              </div>
+              <!--
+              <h2>product you are looking for</h2>
+              <form id="expected-product-form">
+                <label for="">Product category</label>
+                <select id="expected-category-select"></select>
+                <br />
+                <input type="submit" value="Add" id="submitButton" /><br />
+                <span id="exp-message"></span>
+              </form>
+              -->
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
