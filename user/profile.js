@@ -1,17 +1,28 @@
-
 $(document).ready(function () {
+    var userInfoUrl = `http://localhost:3000/user/get-profile`;
+    var reviewCountUrl = `http://localhost:3000/review/get-review-count`;
+    var productListUrl = `http://localhost:3000/user-products/products-list`;
+    var reviewListUrl = `http://localhost:3000/review/get-review`;
+
     function getQueryParam(param){
       var urlParam = new URLSearchParams(window.location.search);
       return urlParam.get(param);
     }
 
+
     var userId = getQueryParam("userId");
-    if(userId) {
+
+    if(userId){
+      userInfoUrl = `http://localhost:3000/user/get-profile?userid=${userId}`;
+      reviewCountUrl = `http://localhost:3000/review/get-review-count?userid=${userId}`;
+      productListUrl = `http://localhost:3000/user-products/products-list?userid=${userId}`;
+      reviewListUrl = `http://localhost:3000/review/get-review?userid=${userId}`;
+    }
 
       //user info
       function loadUserInfo(){
         axios
-          .get(`http://localhost:3000/user/get-profile?userid=${userId}`, {
+          .get(userInfoUrl, {
             withCredentials: true,
           })
           .then(function (response) {
@@ -31,7 +42,7 @@ $(document).ready(function () {
           $("#negative-count").html('');
           $("#positive-percentage").html('');
           axios
-            .get(`http://localhost:3000/review/get-review-count?userid=${userId}`, {
+            .get(reviewCountUrl, {
               withCredentials: true,
             })
             .then(function (response) {
@@ -57,7 +68,7 @@ $(document).ready(function () {
 
         function loadProducts(){
           axios
-            .get(`http://localhost:3000/user-products/products-list?userid=${userId}`, {
+            .get(productListUrl, {
               withCredentials: true,
             })
             .then(function (response) {
@@ -92,7 +103,7 @@ $(document).ready(function () {
           $("#review-list").html('');
 
           axios
-          .get(`http://localhost:3000/review/get-review?userid=${userId}`, {
+          .get(reviewListUrl, {
             withCredentials: true,
           })
           .then(function (response) {
@@ -146,5 +157,4 @@ $(document).ready(function () {
               }
             );
           });
-    }
   });
