@@ -3,12 +3,13 @@
   <head>
     <link rel="stylesheet" href="../assets/dist/css/bootstrap-icons.css" />
     <link rel="stylesheet" href="../assets/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../styles.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="../jquery-3.7.1.js"></script>
     <script src="../assets/dist/axios.min.js"></script>
-    <script src="add_product.js"></script>
+    <script src="manage_products.js"></script>
     <script>
       $(document).ready(() => {
         $("#navbar").load("../utilities/navbar.html", function () {
@@ -17,7 +18,14 @@
       });
     </script>
   </head>
-  <body>
+  <body
+    style="
+      background-color: #f8f9fa;
+      background-image: url('../background5.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+    "
+  >
     <div id="navbar"></div>
     <div
       style="width: 80%; margin: auto; padding: 20px; box-sizing: border-box"
@@ -35,13 +43,12 @@
                 class="card shadow-sm p-4 m-4"
                 style="max-width: 500px; width: 100%"
               >
-                <h2 class="text-center mb-4">Add Your New Product</h2>
+                <h2 class="text-center mb-4">Add New Product</h2>
                 <form id="new-product-form">
                   <div class="form-group mb-3">
                     <label for="category-select">Product Category</label>
                     <select class="form-control" id="category-select">
                       <option value="">Select a category</option>
-                      <!-- Add more options here -->
                     </select>
                   </div>
 
@@ -116,7 +123,7 @@
                 class="card shadow-sm p-4 m-4"
                 style="max-width: 400px; width: 100%"
               >
-                <h2 class="text-center mb-4">Product You Are Looking For</h2>
+                <h2 class="text-center mb-4">Looking For</h2>
                 <form id="expected-product-form">
                   <div class="form-group">
                     <label for="expected-category-select"

@@ -3,6 +3,11 @@ $(document).ready(() => {
   var productListUrl = `http://localhost:3000/user-products/products-list`;
   var categoryListUrl = `http://localhost:3000/user-products/expected-category-list`;
 
+  $("#category-list").on("click",".delete-category", function () {
+    const expProductId = $(this).data("id"); // Get the category ID from the button's data attribute
+    deleteCategory(expProductId);
+  });
+
     axios
       .get("http://localhost:3000/user-products/get-category", {
         withCredentials: true,
@@ -68,7 +73,7 @@ $(document).ready(() => {
       
 
     function loadCategories(){
-      $("#category-list").html('');
+      $("#category-list").empty();
       axios
         .get(categoryListUrl, {
           withCredentials: true,
@@ -78,18 +83,13 @@ $(document).ready(() => {
           console.log(categories);
           categories.forEach((category) => {
             const item =
-              $(`<li class="shadow-sm list-group-item rounded border mb-3 p-3 d-flex justify-content-between align-items-center" style="width: 100%;">
+              $(`<li class="shadow-sm list-group-item rounded border mb-3 p-3 d-flex justify-content-between align-items-center" style="background-color:white;width: 100%;">
                 <span>${category.categoryname}</span>
                 <button class="btn btn-danger btn-sm delete-category" id="delete-category" data-id="${category.id}">Delete</button>
                 </li>`);
           $("#category-list").append(item);
           });
         });
-
-        $("#category-list").on("click",".delete-category", function () {
-          const expProductId = $(this).data("id"); // Get the category ID from the button's data attribute
-          deleteCategory(expProductId);
-      });
     }
 
     function deleteCategory(expProductId) {
@@ -100,8 +100,8 @@ $(document).ready(() => {
       axios.post(apiUrl, data, { withCredentials: true }).then(
         (response) => {
           if (response.status === 200) {
-            alert(response.data.message);
             loadCategories();
+            alert(response.data.message);
           }
         },
         (error) => {
