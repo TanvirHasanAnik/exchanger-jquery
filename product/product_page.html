@@ -9,6 +9,27 @@
     <script src="../jquery-3.7.1.js"></script>
     <script src="../assets/dist/axios.min.js"></script>
     <script src="product.js"></script>
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+      .product-card {
+        margin-top: 30px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        background-color: #fff;
+      }
+      .user-image {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+      .product-image {
+        max-width: 100%;
+        border-radius: 8px;
+      }
+    </style>
     <script>
       $(document).ready(() => {
         $("#navbar").load("../utilities/navbar.html", function () {
@@ -19,9 +40,27 @@
   </head>
   <body>
     <div id="navbar"></div>
-    <h1>Your product Lists</h1>
-    <ul id="productList"></ul>
-    <h1>Products You are looking for</h1>
-    <ul id="expected-productList"></ul>
+    <div class="container">
+      <div class="product-card">
+        <div class="d-flex align-items-center mb-3">
+          <img src="../user-image3.jpg" alt="User" class="user-image me-2" />
+          <div>
+            <h6 class="mb-0">
+              Posted by: <strong id="user-name">John Doe</strong>
+            </h6>
+          </div>
+        </div>
+        <img
+          src="../product-image.png"
+          alt="Product"
+          class="product-image mb-3"
+        />
+        <h5 class="text-secondary">
+          Category: <span class="text-primary" id="category"></span>
+        </h5>
+        <h3 class="mb-3" id="product-title"></h3>
+        <p class="mb-0" id="product-description"></p>
+      </div>
+    </div>
   </body>
 </html>
