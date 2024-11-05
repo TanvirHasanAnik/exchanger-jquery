@@ -28,6 +28,10 @@ $(document).ready(function () {
         $("#product-description").append(description);
 
         loadUserInfo(userId);
+
+        $("#user").click(function () {
+          window.location.href = "../user/profile_page.html?userId=" + userId;
+        })
       });
   } 
   function loadUserInfo(userId){
@@ -47,4 +51,5 @@ $(document).ready(function () {
         $("#phone").append("  "+userData.phone);
       });
   }
+
 });
