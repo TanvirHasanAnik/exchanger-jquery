@@ -1,24 +1,25 @@
 
 $(document).ready(function () {
+
+  function getQueryParam(param){
+    var urlParam = new URLSearchParams(window.location.search);
+    return urlParam.get(param);
+  }
+
+
+  var productId = getQueryParam("productid");
+  if(productId) {
+    alert(productId);
     axios
-      .get("http://localhost:3000/user-products/products-list", {
+      .get(`http://localhost:3000/user-products/get-product?productid=${productId}`, {
         withCredentials: true,
       })
       .then(function (response) {
         console.log(response.data);
-        response.data.forEach((product) => {
-          console.log(product.categoryname);
-          $("#productList").append(
-            "<li>title:" +
-              product.productTitle +
-              " <br>category:" +
-              product.categoryname +
-              " <br>Description:" +
-              product.productDescription +
-              "</li>"
-          );
-        });
+        const product = response.data;
+        alert(product.userid+product.categoryname+product.productTitle+product.productDescription);
       });
+  }
       axios
         .get("http://localhost:3000/user-products/expected-product-list", {
           withCredentials: true,

@@ -69,6 +69,15 @@
         }
       });
 
+      //clicked product redirection
+      $("#gridContainerProducts").on("click", ".card", function () {
+        var productId = $(this).data("productid");
+        if (productId) {
+          window.location.href =
+            "../product/product_page.html?productid=" + productId;
+        }
+      });
+
       $("#gridContainerUsers").hide();
       const gridContainerProducts = $("#gridContainerProducts");
       const gridContainerUsers = $("#gridContainerUsers");
@@ -109,7 +118,7 @@
             console.log(response.data);
             response.data.forEach((product) => {
               const gridItem =
-                $(`<div class="card" style="display: flex;flex-direction: row;overflow: hidden;">
+                $(`<div class="card" data-productid = "${product.id}" style="display: flex;flex-direction: row;overflow: hidden;">
                 <div class="row g-0 ">
                   <div class="col-md-4">
                     <img style="height: 100%; object-fit: cover;" src="../product-image.png" class="img-fluid rounded-start" alt="../image-placeholder.svg">
