@@ -17,6 +17,7 @@ $(document).ready(function () {
       .then(function (response) {
         console.log(response.data);
         const product = response.data;
+        const userId = product.userid;
         const category = product.categoryname;
         const title = product.productTitle;
         const description = product.productDescription;
@@ -25,9 +26,25 @@ $(document).ready(function () {
         $("#category").append(category);
         $("#product-title").append(title);
         $("#product-description").append(description);
+
+        loadUserInfo(userId);
       });
   } 
-  function loadUser(){
-
+  function loadUserInfo(userId){
+    
+    userInfoUrl = `http://localhost:3000/user/get-profile?userid=${userId}`;
+    axios
+      .get(userInfoUrl, {
+        withCredentials: true,
+      })
+      .then(function (response) {
+        const userData = response.data;
+        console.log(userId);
+        console.log(userData);
+        $("#user-name").append("  "+userData.username);
+        $("#address").append("  "+userData.address);
+        $("#email").append("  "+userData.email);
+        $("#phone").append("  "+userData.phone);
+      });
   }
 });
