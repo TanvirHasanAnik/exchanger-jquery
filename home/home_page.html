@@ -83,27 +83,81 @@
       const gridContainerUsers = $("#gridContainerUsers");
 
       //User list grid
-      function loadUsers(apiUrl) {
+      async function loadUsers(apiUrl) {
         gridContainerUsers.empty();
-        axios
-          .get(apiUrl, {
-            withCredentials: true,
-          })
-          .then(function (response) {
-            console.log(response.data);
-            response.data.forEach((user) => {
-              const gridItem =
-                $(`<div class="card shadow" data-userid = "${user.id}" style="width: 12rem; cursor: pointer">
-                    <img class="card-img-top" src="../user-image3.jpg" alt="../image-placeholder.svg">
-                    <div class="card-body">
-                      <h5 class="card-title">${user.username}</h5>
-                      <p class="card-text">${user.address}</p>
-                      <a href="#" class="btn btn-primary">Profile</a>
-                    </div>
-                  </div>`);
+
+        try {
+          // Retrieve the list of users
+          const response = await axios.get(apiUrl, { withCredentials: true });
+          const users = response.data;
+
+          if (!users || users.length === 0) {
+            gridContainerUsers.append("<p>No users found.</p>");
+            return;
+          }
+
+          // Process each user sequentially
+          for (const user of users) {
+            try {
+              // Fetch review counts for each user
+              const counts = await axios.get(
+                `http://localhost:3000/review/get-review-count?userid=${user.id}`,
+                {
+                  withCredentials: true,
+                }
+              );
+
+              // Log the counts data for debugging
+              console.log(`Counts for user ${user.id}:`, counts.data);
+
+              // Safe extraction and calculation of positive percentage
+              const positiveCount = counts.data.positive || 0;
+              const totalCount = counts.data.total || 0;
+              let positivePercentage =
+                totalCount > 0 ? (positiveCount / totalCount) * 100 : 0;
+
+              // Enforce minimum width for visibility
+              positivePercentage =
+                positivePercentage > 0 && positivePercentage < 1
+                  ? 1
+                  : positivePercentage;
+
+              // Create user card with computed values
+              const gridItem = $(`
+          <div class="card shadow" data-userid="${
+            user.id
+          }" style="width: 12rem; cursor: pointer">
+            <img class="card-img-top" src="../user-image3.jpg" alt="Image placeholder">
+            <div class="card-body">
+              <h5 class="card-title">${user.username}</h5>
+              <p class="card-text">${user.address}</p>
+              <div class="progress">
+                <div
+                  class="progress-bar progress-bar-striped bg-success"
+                  role="progressbar"
+                  style="width: ${positivePercentage.toFixed(2)}%;"
+                  aria-valuenow="${positivePercentage.toFixed(2)}"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                ></div>
+              </div>
+            </div>
+          </div>`);
+
+              // Append each card immediately after processing
               gridContainerUsers.append(gridItem);
-            });
-          });
+            } catch (error) {
+              // Log any errors in retrieving individual user review counts
+              console.error(
+                `Error retrieving review counts for user ${user.id}:`,
+                error
+              );
+            }
+          }
+        } catch (error) {
+          // Log any errors in retrieving the list of users
+          console.error("Failed to fetch users:", error);
+        }
       }
 
       //Product list grid
@@ -116,9 +170,14 @@
           })
           .then(function (response) {
             console.log(response.data);
+            if (response.data.length === 0) {
+              gridContainerProducts.append(
+                "<p>No expected product found. Try adding some in manage products section.</p>"
+              );
+            }
             response.data.forEach((product) => {
               const gridItem =
-                $(`<div class="card" data-productid = "${product.id}" style="display: flex;flex-direction: row;overflow: hidden;cursor: pointer">
+                $(`<div class="card shadow-sm" data-productid = "${product.id}" style="display: flex;flex-direction: row;overflow: hidden;cursor: pointer">
                 <div class="row g-0 ">
                   <div class="col-md-4">
                     <img style="height: 100%; object-fit: cover;" src="../product-image.png" class="img-fluid rounded-start" alt="../image-placeholder.svg">
