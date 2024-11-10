@@ -118,7 +118,7 @@ $(document).ready(function () {
                   <!-- User Information Row -->
                   <div class="d-flex align-items-center mb-2">
                     <!-- User Profile Picture -->
-                    <img src="../user-image3.jpg" class="rounded-circle me-2" alt="User Profile" style="width: 40px; height: 40px;">
+                    <img src="../user-image.jpg" class="rounded-circle me-2" alt="User Profile" style="width: 40px; height: 40px;">
                     <!-- Username -->
                     <h5 class="mb-0">${review.username}</h5>
                   </div>
