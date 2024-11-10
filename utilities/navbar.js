@@ -14,4 +14,16 @@ $(document).ready(function(){
         }
       );
     });
+    $("#navprofile").on("click", function () {
+      window.location.href = "../user/profile_page.html";
+    });
+    axios
+      .get("http://localhost:3000/user/get-profile", {
+        withCredentials: true,
+      })
+      .then(function (response) {
+        const userData = response.data;
+        $("#navusername").empty();
+        $("#navusername").append("  " + userData.username);
+      });
   });
