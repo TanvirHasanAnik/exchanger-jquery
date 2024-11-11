@@ -19,6 +19,10 @@ $(document).ready(function () {
       reviewListUrl = `http://localhost:3000/review/get-review?userid=${userId}`;
     }
 
+    if(userId){
+      $('#review-form').show();
+    }
+
       //user info
       function loadUserInfo(){
         axios

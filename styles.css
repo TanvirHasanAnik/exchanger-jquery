@@ -18,10 +18,10 @@
 }
 
 body {
-  background-color: #f8f9fa;
   background-image: url("bg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
 }
 /* .grid-item {
   background-color: #4caf50;

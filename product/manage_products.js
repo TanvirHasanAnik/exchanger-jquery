@@ -117,8 +117,9 @@ $(document).ready(() => {
       event.preventDefault();
       const categoryid = $("#category-select").val();
       const title = $("#product-title").val();
-      const description = $("#product-Description").val();
+      const description = $("#product-description").val();
       const apiUrl = "http://localhost:3000/user-products/add-product";
+      console.log(description);
       const data = {
         categoryid: categoryid,
         productTitle: title,
@@ -127,6 +128,7 @@ $(document).ready(() => {
       axios.post(apiUrl, data, { withCredentials: true }).then(
         (response) => {
           if (response.status === 200) {
+            loadProducts();
             $("#message").text(response.data.message);
             alert(response.data.message);
           }
